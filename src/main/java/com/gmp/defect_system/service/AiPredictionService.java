@@ -10,7 +10,7 @@ import java.util.Map;
 @Service
 public class AiPredictionService {
 
-    private final String AI_SERVER_URL = "http://localhost:8000/predict";
+    private final String AI_SERVER_URL = "https://qc-ai-service.onrender.com/";
     private final RestTemplate restTemplate;
 
     public AiPredictionService() {
