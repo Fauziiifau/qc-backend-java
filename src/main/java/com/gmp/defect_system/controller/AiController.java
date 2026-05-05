@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/ai")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://qc-frontend-xvf2.vercel.app")
 public class AiController {
 
     @Autowired
