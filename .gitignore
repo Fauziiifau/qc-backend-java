@@ -33,3 +33,9 @@ build/
 .vscode/
 
 uploads/
+
+.env
+
+# File sistem Windows
+Thumbs.db
+desktop.ini
