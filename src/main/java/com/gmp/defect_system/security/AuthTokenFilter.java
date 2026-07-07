@@ -27,6 +27,17 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
+
+        response.setHeader("Access-Control-Allow-Origin", "https://www.qc-monitoring.online");
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        response.setHeader("Access-Control-Allow-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, X-Requested-With, accept, Origin, Access-Control-Request-Method, Access-Control-Request-Headers");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+            response.setStatus(HttpServletResponse.SC_OK);
+            return;
+        }
+
         try {
             String jwt = parseJwt(request);
             if (jwt != null && jwtUtil.validateToken(jwt)) {
@@ -43,6 +54,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
+
     private String parseJwt(HttpServletRequest request) {
         String headerAuth = request.getHeader("Authorization");
         if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
