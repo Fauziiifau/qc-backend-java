@@ -13,7 +13,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/ng-data")
-@CrossOrigin(origins = "*")
 public class NgDataController {
 
     private final NgDataService ngDataService;
