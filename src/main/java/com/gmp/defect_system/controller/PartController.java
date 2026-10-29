@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/parts")
-@CrossOrigin(origins = "https://www.qc-monitoring.online")
 public class PartController {
 
     private final PartService partService;

@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/defects")
-@CrossOrigin(origins = "*")
 public class DefectTypeController {
 
     private final DefectTypeService defectTypeService;

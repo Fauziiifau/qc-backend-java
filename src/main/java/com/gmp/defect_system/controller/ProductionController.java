@@ -14,7 +14,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/production")
-@CrossOrigin(origins = "*")
 public class ProductionController {
 
     private final ProductionService productionService;
