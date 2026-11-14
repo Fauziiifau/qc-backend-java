@@ -35,6 +35,8 @@ build/
 uploads/
 
 .env
+.env.*
+!.env.example
 
 # File sistem Windows
 Thumbs.db
