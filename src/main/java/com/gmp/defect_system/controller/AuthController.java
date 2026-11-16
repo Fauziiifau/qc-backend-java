@@ -40,7 +40,8 @@ public class AuthController {
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setFullName(request.getFullName());
-        user.setRole(request.getRole());
+        // Pendaftaran publik selalu OPERATOR; role ADMIN tidak boleh ditentukan client.
+        user.setRole("OPERATOR");
 
         userRepository.save(user);
         return ResponseEntity.ok("User berhasil didaftarkan!");

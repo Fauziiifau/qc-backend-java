@@ -19,17 +19,21 @@ public class NgDataService {
     private final NgDataRepository ngDataRepository;
     private final PartRepository partRepository;
     private final DefectTypeRepository defectTypeRepository;
+    private final ProductionProcessService processService;
 
-    public NgDataService(NgDataRepository ngDataRepository, PartRepository partRepository, DefectTypeRepository defectTypeRepository) {
+    public NgDataService(NgDataRepository ngDataRepository, PartRepository partRepository,
+                         DefectTypeRepository defectTypeRepository, ProductionProcessService processService) {
         this.ngDataRepository = ngDataRepository;
         this.partRepository = partRepository;
         this.defectTypeRepository = defectTypeRepository;
+        this.processService = processService;
     }
 
     public List<NgData> getAllNgData() {
         return ngDataRepository.findAll();
     }
     public NgData saveNewDefect(NgDataRequest request, String loggedInUsername) {
+        processService.validateActiveName(request.getProses());
         Part part = partRepository.findById(request.getPartId())
                 .orElseThrow(() -> new RuntimeException("Part tidak ditemukan!"));
 
@@ -58,6 +62,7 @@ public class NgDataService {
 
     // Fungsi UPDATE
     public NgData updateNgData(Long id, NgData updatedData) {
+        processService.validateActiveName(updatedData.getProses());
         NgData existingData = ngDataRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Data dengan ID " + id + " tidak ditemukan"));
 

@@ -16,10 +16,13 @@ public class ProductionService {
 
     private final ProductionRepository productionRepository;
     private final PartRepository partRepository;
+    private final ProductionProcessService processService;
 
-    public ProductionService(ProductionRepository productionRepository, PartRepository partRepository) {
+    public ProductionService(ProductionRepository productionRepository, PartRepository partRepository,
+                             ProductionProcessService processService) {
         this.productionRepository = productionRepository;
         this.partRepository = partRepository;
+        this.processService = processService;
     }
 
     public List<Production> getAll() {
@@ -39,6 +42,10 @@ public class ProductionService {
                 continue;
             }
 
+            // Pada alur Welding saat ini processName boleh kosong; nilai terisi harus valid.
+            if (item.getProcessName() != null && !item.getProcessName().isBlank()) {
+                processService.validateActiveName(item.getProcessName());
+            }
             Part part = partRepository.findById(item.getPartId())
                     .orElseThrow(() -> new RuntimeException("Part tidak ditemukan!"));
 
