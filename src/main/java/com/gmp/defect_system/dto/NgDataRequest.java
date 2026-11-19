@@ -8,6 +8,7 @@ public class NgDataRequest {
     private Long partId;
     private Long defectTypeId;
     private String proses;
+    private String shift;
     private Integer quantity;
     private String operatorName;
     private String remarks;

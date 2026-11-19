@@ -44,6 +44,8 @@ public class NgDataService {
         newData.setPart(part);
         newData.setDefectType(defectType);
         newData.setProses(request.getProses());
+        newData.setShift(request.getShift() == null || request.getShift().isBlank()
+                ? null : request.getShift().trim());
         newData.setQuantity(request.getQuantity());
         newData.setOperatorName(request.getOperatorName());
         newData.setRemarks(request.getRemarks());
